@@ -1,16 +1,16 @@
 set(sources
-    src/tmp.cpp
+    src/string.cpp
 )
 
 set(exe_sources
-		src/main.cpp
-		${sources}
+    src/main.cpp
+    ${sources}
 )
 
 set(headers
-    include/project/tmp.hpp
+    include/technikum/string.h
 )
 
 set(test_sources
-  src/tmp_test.cpp
+    src/string_test.cpp
 )
