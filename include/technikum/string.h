@@ -6,6 +6,18 @@ namespace technikum {
         public:
             string(char const* s);
 
+            // copy constructor
+            string(string const& other);
+
+            // move constructor
+            string(string&& other);
+
+            // copy assignment
+            string& operator=(string const& other);
+
+            // move assignment
+            string& operator=(string&& other);
+
             char const* c_str();
 
         private:
