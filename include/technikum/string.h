@@ -8,6 +8,10 @@ namespace technikum {
 
             char const* c_str();
 
+            int length(const char *s);
+
+            int size(const char *s);
+
         private:
             char const* str;
     };
