@@ -12,6 +12,10 @@ technikum::string::string(char const* s) {
     memcpy(this->str, s, length(s) + 1);
 }
 
+technikum::string::~string() {
+    delete this->str;
+}
+
 char const* technikum::string::c_str() {
     return this->str;
 }
