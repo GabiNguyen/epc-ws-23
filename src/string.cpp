@@ -42,7 +42,7 @@ void technikum::string::append(char const* s) {
     memcpy(newStr + strLength, s, sLength);
     newStr[strLength + sLength] = '\0';
 
-    delete this->str;
+    delete[] this->str;
     this->str = newStr;
 }
 
