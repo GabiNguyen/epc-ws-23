@@ -8,9 +8,11 @@ namespace technikum {
 
             char const* c_str();
 
-            int length(const char *s);
+            int length();
 
-            int size(const char *s);
+            int size();
+
+            char* append(char* s1, const char* s2);
 
         private:
             char const* str;
