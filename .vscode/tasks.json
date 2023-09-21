@@ -18,7 +18,7 @@
         {
             "label": "test",
             "type": "shell",
-            "command": "cd build && ctest -C Release",
+            "command": "cd build && ctest -C Release -V",
             "presentation": {
                 "panel": "dedicated"
             }
