@@ -7,6 +7,8 @@ namespace technikum {
     class string {
         public:
             string(char const* s);
+            
+            ~string();
 
             char const* c_str();
 

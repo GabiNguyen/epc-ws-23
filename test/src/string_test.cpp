@@ -6,6 +6,10 @@
 
 #define SUITE technikum_string
 
+TEST(SUITE, nullptr) {
+    ASSERT_THROW(technikum::string(nullptr), std::logic_error);
+}
+
 TEST(SUITE, c_str) {
     char const* str = "Hello World!";
     technikum::string string(str);
@@ -71,10 +75,6 @@ TEST(SUITE, append_empty_to_empty) {
 TEST(SUITE, append_nullptr) {
     technikum::string string("Hello ");
     ASSERT_THROW(string.append(nullptr), std::logic_error);
-}
-
-TEST(SUITE, append_to_nullptr) {
-    ASSERT_THROW(technikum::string(nullptr), std::logic_error);
 }
 
 int main(int argc, char **argv) {

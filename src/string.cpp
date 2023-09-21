@@ -12,6 +12,10 @@ technikum::string::string(char const* s) {
     memcpy(this->str, s, length(s) + 1);
 }
 
+technikum::string::~string() {
+    delete[] this->str;
+}
+
 char const* technikum::string::c_str() {
     return this->str;
 }
@@ -38,7 +42,7 @@ void technikum::string::append(char const* s) {
     memcpy(newStr + strLength, s, sLength);
     newStr[strLength + sLength] = '\0';
 
-    delete this->str;
+    delete[] this->str;
     this->str = newStr;
 }
 
