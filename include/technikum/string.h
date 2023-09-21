@@ -1,6 +1,8 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include <cstddef>
+
 namespace technikum {
     class string {
         public:
@@ -8,8 +10,16 @@ namespace technikum {
 
             char const* c_str();
 
+            size_t length();
+
+            size_t size();
+
+            void append(char const* s);
+
         private:
-            char const* str;
+            char* str;
+
+            static size_t length(char const* s);
     };
 }
 
