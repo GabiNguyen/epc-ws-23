@@ -13,7 +13,7 @@ technikum::string::string(char const* s) {
 }
 
 technikum::string::~string() {
-    delete this->str;
+    delete[] this->str;
 }
 
 char const* technikum::string::c_str() {
