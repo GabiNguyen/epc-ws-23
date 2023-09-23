@@ -7,7 +7,7 @@ namespace technikum {
     class string {
         public:
             string(char const* s);
-            
+
             ~string();
 
             // copy constructor

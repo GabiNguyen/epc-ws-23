@@ -12,15 +12,34 @@
             },
             "presentation": {
                 "panel": "dedicated"
-            }
+            },
+            "problemMatcher": []
         },
         {
             "label": "test",
             "type": "shell",
-            "command": "cmake --build . --target install && cd build && ctest -C Release -V",
+            "command": "cd build && ctest -C Release -V",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build"
+            ],
             "presentation": {
                 "panel": "dedicated"
-            }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "valgrind",
+            "type": "shell",
+            "command": "valgrind --tool=memcheck --leak-check=yes ./build/test/string_test_Tests",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build"
+            ],
+            "presentation": {
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
         }
     ]
 }

@@ -18,18 +18,22 @@ technikum::string::~string() {
     delete[] this->str;
 }
 
+// copy constructor
 technikum::string::string(string const& other) : string(other.str) {
     // noop
 }
 
+// move constructor
 technikum::string::string(string&& other) : string(std::exchange(other.str, nullptr)) {
-    // noop
+    delete[] other.str;
 }
 
+// copy assignment
 technikum::string& technikum::string::operator=(string const& other) {
     return *this = string(other);
 }
 
+// move assignment
 technikum::string& technikum::string::operator=(string&& other) {
     std::swap(this->str, other.str);
     return *this;
