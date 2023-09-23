@@ -14,7 +14,7 @@ namespace technikum {
             string(string const& other);
 
             // move constructor
-            string(string&& other);
+            string(string&& other) noexcept;
 
             // copy assignment
             string& operator=(string const& other);
@@ -34,6 +34,8 @@ namespace technikum {
             char* str;
 
             static size_t length(char const* s);
+            
+            size_t str_size;
     };
 }
 
