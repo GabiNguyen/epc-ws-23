@@ -8,8 +8,7 @@
             "type": "shell",
             "command": "cmake --build . --target install",
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "panel": "dedicated"
@@ -18,7 +17,7 @@
         {
             "label": "test",
             "type": "shell",
-            "command": "cd build && ctest -C Release",
+            "command": "cmake --build . --target install && cd build && ctest -C Release -V",
             "presentation": {
                 "panel": "dedicated"
             }
