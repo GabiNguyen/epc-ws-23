@@ -10,13 +10,13 @@ namespace technikum {
             
             ~string();
 
-            char const* c_str();
+            char const* c_str() const;
 
-            size_t length();
+            size_t length() const;
 
-            size_t size();
+            size_t size() const;
 
-            void append(char const* s);
+            string* append(char const* s);
 
         private:
             char* str;
