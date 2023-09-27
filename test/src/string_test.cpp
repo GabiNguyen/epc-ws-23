@@ -81,6 +81,9 @@ TEST(SUITE, copy_constructor) {
     char const* str = "Hello World!";
     technikum::string string(str);
     technikum::string copy(string);
+    string.append(" How are you?");
+
+    ASSERT_STREQ(string.c_str(), "Hello World! How are you?");
     ASSERT_STREQ(copy.c_str(), str);
 }
 
@@ -95,6 +98,9 @@ TEST(SUITE, copy_assignment) {
     char const* str = "Hello World!";
     technikum::string string(str);
     technikum::string copy = string;
+    string.append(" How are you?");
+
+    ASSERT_STREQ(string.c_str(), "Hello World! How are you?");
     ASSERT_STREQ(copy.c_str(), str);
 }
 
