@@ -19,7 +19,7 @@ technikum::string::~string() {
 }
 
 // copy constructor
-technikum::string::string(string const& other) : string(other.str) {
+technikum::string::string(string const& other) noexcept : string(other.str) {
     // noop
 }
 
@@ -34,7 +34,7 @@ technikum::string::string(string&& other) noexcept : str(nullptr) {
 }
 
 // copy assignment
-technikum::string& technikum::string::operator=(string const& other) {
+technikum::string& technikum::string::operator=(string const& other) noexcept {
     return *this = string(other);
 }
 

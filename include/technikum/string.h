@@ -11,13 +11,13 @@ namespace technikum {
             ~string();
 
             // copy constructor
-            string(string const& other);
+            string(string const& other) noexcept;
 
             // move constructor
             string(string&& other) noexcept;
 
             // copy assignment
-            string& operator=(string const& other);
+            string& operator=(string const& other) noexcept;
 
             // move assignment
             string& operator=(string&& other) noexcept;
