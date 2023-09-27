@@ -7,8 +7,20 @@ namespace technikum {
     class string {
         public:
             string(char const* s);
-            
+
             ~string();
+
+            // copy constructor
+            string(string const& other) noexcept;
+
+            // move constructor
+            string(string&& other) noexcept;
+
+            // copy assignment
+            string& operator=(string const& other) noexcept;
+
+            // move assignment
+            string& operator=(string&& other) noexcept;
 
             char const* c_str() const;
 
