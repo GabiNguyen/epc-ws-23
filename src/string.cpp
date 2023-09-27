@@ -3,8 +3,6 @@
 #include <cstddef>
 #include <stdexcept>
 
-#include <utility>
-
 technikum::string::string(char const* s) {
     if (s == nullptr) {
         throw std::logic_error("String cannot be null");
