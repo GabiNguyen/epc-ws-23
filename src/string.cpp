@@ -16,19 +16,19 @@ technikum::string::~string() {
     delete[] this->str;
 }
 
-char const* technikum::string::c_str() {
+char const* technikum::string::c_str() const {
     return this->str;
 }
 
-size_t technikum::string::length() {
+size_t technikum::string::length() const {
     return length(this->str);
 }
 
-size_t technikum::string::size() {
+size_t technikum::string::size() const {
     return length();
 }
 
-void technikum::string::append(char const* s) {
+technikum::string* technikum::string::append(char const* s) {
     if (s == nullptr) {
         throw std::logic_error("String cannot be null");
     }
@@ -44,6 +44,7 @@ void technikum::string::append(char const* s) {
 
     delete[] this->str;
     this->str = newStr;
+    return this;
 }
 
 size_t technikum::string::length(char const* s) {
