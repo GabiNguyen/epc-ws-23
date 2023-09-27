@@ -9,7 +9,7 @@ technikum::string::string(char const* s) {
     if (s == nullptr) {
         throw std::logic_error("String cannot be null");
     }
-    str_size = length(s);
+
     this->str = new char[length(s) + 1];
     memcpy(this->str, s, length(s) + 1);
 }
@@ -24,17 +24,13 @@ technikum::string::string(string const& other) : string(other.str) {
 }
 
 // move constructor
-/* technikum::string::string(string&& other) : string(std::exchange(other.str, nullptr)) {
-    delete[] other.str;
-}
- */
-
-technikum::string::string(string&& other) noexcept {
-    str_size = other.str_size;
+technikum::string::string(string&& other) noexcept : str(nullptr) {
+    // Copy c string
     str = other.str;
 
+    // Set to nullptr to memory is not
+    // freed when other is destroyed
     other.str = nullptr;
-    other.str_size = 0;
 }
 
 // copy assignment
@@ -43,8 +39,20 @@ technikum::string& technikum::string::operator=(string const& other) {
 }
 
 // move assignment
-technikum::string& technikum::string::operator=(string&& other) {
-    std::swap(this->str, other.str);
+technikum::string& technikum::string::operator=(string&& other) noexcept {
+    if (this == &other) {
+        return *this;
+    }
+
+    delete[] str;
+
+    // Copy c string
+    str = other.str;
+
+    // Set to nullptr to memory is not
+    // freed when other is destroyed
+    other.str = nullptr;
+
     return *this;
 }
 

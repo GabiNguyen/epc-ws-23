@@ -20,7 +20,7 @@ namespace technikum {
             string& operator=(string const& other);
 
             // move assignment
-            string& operator=(string&& other);
+            string& operator=(string&& other) noexcept;
 
             char const* c_str();
 
@@ -34,8 +34,6 @@ namespace technikum {
             char* str;
 
             static size_t length(char const* s);
-            
-            size_t str_size;
     };
 }
 
