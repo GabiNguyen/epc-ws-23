@@ -72,6 +72,15 @@ TEST(SUITE, append_empty_to_empty) {
     ASSERT_STREQ(string.c_str(), "");
 }
 
+TEST(SUITE, append_multiple) {
+    char s1[] = "Hello ";
+    char s2[] = "World!";
+    char s3[] = " How are you?";
+    technikum::string string(s1);
+    string.append(s2)->append(s3);
+    ASSERT_STREQ(string.c_str(), "Hello World! How are you?");
+}
+
 TEST(SUITE, append_nullptr) {
     technikum::string string("Hello ");
     ASSERT_THROW(string.append(nullptr), std::logic_error);
