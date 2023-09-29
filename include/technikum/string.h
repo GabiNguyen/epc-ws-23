@@ -28,7 +28,7 @@ namespace technikum {
 
             size_t size() const;
 
-            string* append(char const* s);
+            string& append(char const* s);
 
         private:
             char* str;

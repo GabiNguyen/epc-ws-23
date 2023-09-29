@@ -66,7 +66,7 @@ size_t technikum::string::size() const {
     return length();
 }
 
-technikum::string* technikum::string::append(char const* s) {
+technikum::string& technikum::string::append(char const* s) {
     if (s == nullptr) {
         throw std::logic_error("String cannot be null");
     }
@@ -82,7 +82,7 @@ technikum::string* technikum::string::append(char const* s) {
 
     delete[] this->str;
     this->str = newStr;
-    return this;
+    return *this;
 }
 
 size_t technikum::string::length(char const* s) {
