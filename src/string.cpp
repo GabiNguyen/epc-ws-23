@@ -1,5 +1,5 @@
 #include "technikum/string.h"
-#include <string.h>
+#include <algorithm>
 #include <cstddef>
 #include <stdexcept>
 
@@ -9,7 +9,7 @@ technikum::string::string(char const* s) {
     }
 
     this->str = new char[length(s) + 1];
-    memcpy(this->str, s, length(s) + 1);
+    std::copy(s, s + length(s) + 1, this->str);
 }
 
 technikum::string::~string() {
@@ -66,23 +66,31 @@ size_t technikum::string::size() const {
     return length();
 }
 
-technikum::string* technikum::string::append(char const* s) {
+technikum::string& technikum::string::append(char const* s) {
     if (s == nullptr) {
         throw std::logic_error("String cannot be null");
     }
 
+    // "Hello " -> strLength = 6
     size_t strLength = length();
+    // "World!" -> sLength = 6
     size_t sLength = length(s);
 
+    // size of newStr = 13
     char* newStr = new char[strLength + sLength + 1];
 
-    memcpy(newStr, this->str, strLength);
-    memcpy(newStr + strLength, s, sLength);
+    // copy "Hello " from H to " " to newStr
+    std::copy(this->str, this->str + strLength, newStr);
+    // newStr = "Hello XXXXXXX"
+    // copy "World!" from W to ! to newStr + 6
+    std::copy(s, s + sLength, newStr + strLength);
+    // newStr = "Hello World!X"
     newStr[strLength + sLength] = '\0';
+    // newStr = "Hello World!\0"
 
     delete[] this->str;
     this->str = newStr;
-    return this;
+    return *this;
 }
 
 size_t technikum::string::length(char const* s) {
