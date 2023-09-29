@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Install gtest
-      run: sudo apt-install libgtest-dev
+      run: sudo apt install libgtest-dev
 
     - uses: actions/checkout@v3
 
