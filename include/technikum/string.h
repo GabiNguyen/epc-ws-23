@@ -22,6 +22,9 @@ namespace technikum {
             // move assignment
             string& operator=(string&& other) noexcept;
 
+            string operator+(string const& other) const;
+            string operator+(char const* s) const;
+
             char const* c_str() const;
 
             size_t length() const;
