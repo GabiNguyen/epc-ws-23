@@ -54,6 +54,20 @@ technikum::string& technikum::string::operator=(string&& other) noexcept {
     return *this;
 }
 
+technikum::string technikum::string::operator+(string const& other) const {
+    return *this + other.str;
+}
+
+technikum::string technikum::string::operator+(char const* s) const {
+    if (s == nullptr) {
+        throw std::logic_error("String cannot be null");
+    }
+
+    technikum::string copy(*this);
+    copy.append(s);
+    return copy;
+}
+
 char const* technikum::string::c_str() const {
     return this->str;
 }
