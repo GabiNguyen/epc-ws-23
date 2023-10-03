@@ -149,6 +149,24 @@ TEST(SUITE, plus_operator_c_string) {
     ASSERT_STREQ(hello_world_how_are_you.c_str(), "Hello World! How are you?");
 }
 
+TEST(SUITE, plus_euqal_operator_string) {
+    technikum::string hello("Hello ");
+    technikum::string world("World!");
+    hello += world;
+    hello += hello;
+
+    ASSERT_STREQ(hello.c_str(), "Hello World!Hello World!");
+    ASSERT_STREQ(world.c_str(), "World!");
+}
+
+TEST(SUITE, plus_euqal_operator_c_string) {
+    technikum::string hello("Hello ");
+    hello += "World!";
+    hello += " How are you?";
+
+    ASSERT_STREQ(hello.c_str(), "Hello World! How are you?");
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

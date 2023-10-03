@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstddef>
 #include <stdexcept>
+#include <iostream>
 
 technikum::string::string(char const* s) {
     if (s == nullptr) {
@@ -66,6 +67,33 @@ technikum::string technikum::string::operator+(char const* s) const {
     technikum::string copy(*this);
     copy.append(s);
     return copy;
+}
+
+// technikum::string technikum::string::operator+=(string const& other) const {
+//     return *this += other.str;
+// }
+
+// technikum::string technikum::string::operator+=(char const* s) const {
+//     if (s == nullptr) {
+//         throw std::logic_error("String cannot be null");
+//     }
+
+//     technikum::string copy(*this);
+//     copy = copy + s;
+//     return copy;
+// }
+
+technikum ::string& technikum::string::operator+=(string const& other) {
+    return *this += other.str;
+}
+
+technikum::string& technikum::string::operator+=(char const* s) {
+    if (s == nullptr) {
+        throw std::logic_error("String cannot be null");
+    }
+
+    *this = *this + s;
+    return *this;
 }
 
 char const* technikum::string::c_str() const {
