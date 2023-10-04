@@ -169,7 +169,6 @@ TEST(SUITE, plus_equal_operator_c_string) {
 
 TEST(SUITE, plus_equal_operator_nullptr) {
     technikum::string hello("Hello ");
-    
     ASSERT_THROW(hello += nullptr, std::logic_error);
 }
 
