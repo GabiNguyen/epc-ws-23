@@ -149,7 +149,7 @@ TEST(SUITE, plus_operator_c_string) {
     ASSERT_STREQ(hello_world_how_are_you.c_str(), "Hello World! How are you?");
 }
 
-TEST(SUITE, plus_euqal_operator_string) {
+TEST(SUITE, plus_equal_operator_string) {
     technikum::string hello("Hello ");
     technikum::string world("World!");
     hello += world;
@@ -159,12 +159,18 @@ TEST(SUITE, plus_euqal_operator_string) {
     ASSERT_STREQ(world.c_str(), "World!");
 }
 
-TEST(SUITE, plus_euqal_operator_c_string) {
+TEST(SUITE, plus_equal_operator_c_string) {
     technikum::string hello("Hello ");
     hello += "World!";
     hello += " How are you?";
 
     ASSERT_STREQ(hello.c_str(), "Hello World! How are you?");
+}
+
+TEST(SUITE, plus_equal_operator_nullptr) {
+    technikum::string hello("Hello ");
+    
+    ASSERT_THROW(hello += nullptr, std::logic_error);
 }
 
 int main(int argc, char **argv) {
