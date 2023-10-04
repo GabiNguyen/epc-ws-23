@@ -149,6 +149,11 @@ TEST(SUITE, plus_operator_c_string) {
     ASSERT_STREQ(hello_world_how_are_you.c_str(), "Hello World! How are you?");
 }
 
+TEST(SUITE, plus_operator_nullptr) {
+    technikum::string hello("Hello ");
+    ASSERT_THROW(hello + nullptr, std::logic_error);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
