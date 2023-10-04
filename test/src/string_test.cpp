@@ -149,6 +149,11 @@ TEST(SUITE, plus_operator_c_string) {
     ASSERT_STREQ(hello_world_how_are_you.c_str(), "Hello World! How are you?");
 }
 
+TEST(SUITE, c_string_conversion_operator) {
+    technikum::string hello_world("Hello World!");
+    ASSERT_EQ(12, strlen(hello_world));
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
