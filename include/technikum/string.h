@@ -28,6 +28,8 @@ namespace technikum {
             string& operator+=(string const& other);
             string& operator+=(char const* s);
 
+            operator char*() const;
+
             char const* c_str() const;
 
             size_t length() const;
