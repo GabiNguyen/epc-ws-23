@@ -68,6 +68,19 @@ technikum::string technikum::string::operator+(char const* s) const {
     return copy;
 }
 
+technikum ::string& technikum::string::operator+=(string const& other) {
+    return *this += other.str;
+}
+
+technikum::string& technikum::string::operator+=(char const* s) {
+    if (s == nullptr) {
+        throw std::logic_error("String cannot be null");
+    }
+
+    *this = *this + s;
+    return *this;
+}
+
 technikum::string::operator char*() const {
     return this->str;
 }

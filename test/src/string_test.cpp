@@ -154,6 +154,29 @@ TEST(SUITE, plus_operator_nullptr) {
     ASSERT_THROW(hello + nullptr, std::logic_error);
 }
 
+TEST(SUITE, plus_equal_operator_string) {
+    technikum::string hello("Hello ");
+    technikum::string world("World!");
+    hello += world;
+    hello += hello;
+
+    ASSERT_STREQ(hello.c_str(), "Hello World!Hello World!");
+    ASSERT_STREQ(world.c_str(), "World!");
+}
+
+TEST(SUITE, plus_equal_operator_c_string) {
+    technikum::string hello("Hello ");
+    hello += "World!";
+    hello += " How are you?";
+
+    ASSERT_STREQ(hello.c_str(), "Hello World! How are you?");
+}
+
+TEST(SUITE, plus_equal_operator_nullptr) {
+    technikum::string hello("Hello ");
+    ASSERT_THROW(hello += nullptr, std::logic_error);
+}
+
 TEST(SUITE, c_string_conversion_operator) {
     technikum::string hello_world("Hello World!");
     ASSERT_EQ(12, strlen(hello_world));
