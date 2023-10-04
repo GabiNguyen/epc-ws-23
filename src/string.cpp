@@ -68,6 +68,10 @@ technikum::string technikum::string::operator+(char const* s) const {
     return copy;
 }
 
+technikum::string::operator char*() const {
+    return this->str;
+}
+
 char const* technikum::string::c_str() const {
     return this->str;
 }
