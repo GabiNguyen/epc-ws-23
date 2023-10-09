@@ -2,10 +2,39 @@
 #define STRING_H
 
 #include <cstddef>
+#include <iterator>
 
 namespace technikum {
     class string {
         public:
+            // ////////////////////////////////////////////
+            // iterator
+            // ////////////////////////////////////////////
+
+            class iterator {
+                using iterator_category = std::bidirectional_iterator_tag;
+                using difference_type   = std::ptrdiff_t;
+                using value_type        = char;
+                using pointer           = value_type*;
+                using reference         = value_type&;
+
+                public:
+                    iterator& operator--();
+                    iterator operator--(int);
+
+                    reference operator*() const;
+
+                private:
+                    iterator(pointer p);
+                    pointer ptr;
+
+                friend string;
+            };
+
+            // ////////////////////////////////////////////
+            // rule of five
+            // ////////////////////////////////////////////
+
             string(char const* s);
 
             ~string();
@@ -22,6 +51,10 @@ namespace technikum {
             // move assignment
             string& operator=(string&& other) noexcept;
 
+            // ////////////////////////////////////////////
+            // operators
+            // ////////////////////////////////////////////
+
             string operator+(string const& other) const;
             string operator+(char const* s) const;
 
@@ -30,6 +63,10 @@ namespace technikum {
 
             operator char*() const;
 
+            // ////////////////////////////////////////////
+            // members
+            // ////////////////////////////////////////////
+
             char const* c_str() const;
 
             size_t length() const;
@@ -37,6 +74,10 @@ namespace technikum {
             size_t size() const;
 
             string& append(char const* s);
+
+            iterator begin() const;
+
+            iterator end() const;
 
         private:
             char* str;

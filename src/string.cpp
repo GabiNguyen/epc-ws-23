@@ -3,6 +3,33 @@
 #include <cstddef>
 #include <stdexcept>
 
+// /////////////////////////////////////////////////////////////////////////
+// iterator
+// /////////////////////////////////////////////////////////////////////////
+
+technikum::string::iterator::iterator(pointer p) : ptr(p) {
+    // noop
+}
+
+technikum::string::iterator& technikum::string::iterator::operator--() {
+    ptr--;
+    return *this;
+}
+
+technikum::string::iterator technikum::string::iterator::operator--(int) {
+    iterator tmp(*this);
+    --(*this);
+    return tmp;
+}
+
+technikum::string::iterator::reference technikum::string::iterator::operator*() const {
+    return *ptr;
+}
+
+// /////////////////////////////////////////////////////////////////////////
+// rule of five
+// /////////////////////////////////////////////////////////////////////////
+
 technikum::string::string(char const* s) {
     if (s == nullptr) {
         throw std::logic_error("String cannot be null");
@@ -54,6 +81,10 @@ technikum::string& technikum::string::operator=(string&& other) noexcept {
     return *this;
 }
 
+// /////////////////////////////////////////////////////////////////////////
+// operators
+// /////////////////////////////////////////////////////////////////////////
+
 technikum::string technikum::string::operator+(string const& other) const {
     return *this + other.str;
 }
@@ -84,6 +115,10 @@ technikum::string& technikum::string::operator+=(char const* s) {
 technikum::string::operator char*() const {
     return this->str;
 }
+
+// /////////////////////////////////////////////////////////////////////////
+// members
+// /////////////////////////////////////////////////////////////////////////
 
 char const* technikum::string::c_str() const {
     return this->str;
@@ -122,6 +157,14 @@ technikum::string& technikum::string::append(char const* s) {
     delete[] this->str;
     this->str = newStr;
     return *this;
+}
+
+technikum::string::iterator technikum::string::begin() const {
+    return iterator(this->str);
+}
+
+technikum::string::iterator technikum::string::end() const {
+    return iterator(this->str + length());
 }
 
 size_t technikum::string::length(char const* s) {
