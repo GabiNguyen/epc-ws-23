@@ -223,6 +223,21 @@ TEST(SUITE, end) {
     ASSERT_EQ(*(--it), '!');
 }
 
+TEST(SUITE, iterator_prefix_increment) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = string.begin();
+    ASSERT_EQ(*it, 'H');
+    ASSERT_EQ(*(++it), 'e');
+}
+
+TEST(SUITE, iterator_postfix_increment) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = string.begin();
+    ASSERT_EQ(*it, 'H');
+    ASSERT_EQ(*(it++), 'H');
+    ASSERT_EQ(*it, 'e');
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

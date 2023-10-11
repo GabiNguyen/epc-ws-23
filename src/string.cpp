@@ -22,6 +22,31 @@ technikum::string::iterator technikum::string::iterator::operator--(int) {
     return tmp;
 }
 
+technikum::string::iterator& technikum::string::iterator::operator++() {
+    ptr++;
+    return *this;
+}
+
+technikum::string::iterator technikum::string::iterator::operator++(int) {
+    iterator tmp(*this);
+    ++(*this);
+    return tmp;
+}
+
+bool technikum::string::iterator::operator!=(iterator const& other) const {
+    if (ptr == nullptr || other.ptr == nullptr) {
+        throw std::logic_error("Iterator cannot be null");
+    }
+    return ptr != other.ptr;
+}
+
+bool technikum::string::iterator::operator==(iterator const& other) const {
+    if (ptr == nullptr || other.ptr == nullptr) {
+        throw std::logic_error("Iterator cannot be null");
+    }
+    return ptr == other.ptr;
+}
+
 technikum::string::iterator::reference technikum::string::iterator::operator*() const {
     return *ptr;
 }

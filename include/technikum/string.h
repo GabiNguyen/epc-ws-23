@@ -22,6 +22,12 @@ namespace technikum {
                     iterator& operator--();
                     iterator operator--(int);
 
+                    iterator& operator++();
+                    iterator operator++(int);
+
+                    bool operator!=(iterator const& other) const;
+                    bool operator==(iterator const& other) const;
+
                     reference operator*() const;
 
                 private:
