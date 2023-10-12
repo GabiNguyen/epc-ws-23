@@ -28,7 +28,10 @@ namespace technikum {
                     bool operator!=(iterator const& other) const;
                     bool operator==(iterator const& other) const;
 
+                    reference operator*();
                     reference operator*() const;
+                    pointer operator->();
+                    pointer operator->() const;
 
                 private:
                     iterator(pointer p);

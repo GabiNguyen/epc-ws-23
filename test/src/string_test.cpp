@@ -258,6 +258,15 @@ TEST(SUITE, equal) {
     EXPECT_FALSE(it1 == it2);
 }
 
+// TEST(SUITE, arrow_operator) {
+//     technikum::string string("Hello, World!");
+//     technikum::string::iterator it = string.begin();
+//     auto ptr = it.operator->();
+    
+//     ASSERT_EQ(ptr, &(*it)); 
+// }
+
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
