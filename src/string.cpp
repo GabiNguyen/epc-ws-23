@@ -11,6 +11,17 @@ technikum::string::iterator::iterator(pointer p) : ptr(p) {
     // noop
 }
 
+technikum::string::iterator& technikum::string::iterator::operator++() {
+    ptr++;
+    return *this;
+}
+
+technikum::string::iterator technikum::string::iterator::operator++(int) {
+    iterator tmp(*this);
+    ++(*this);
+    return tmp;
+}
+
 technikum::string::iterator& technikum::string::iterator::operator--() {
     ptr--;
     return *this;
@@ -20,6 +31,14 @@ technikum::string::iterator technikum::string::iterator::operator--(int) {
     iterator tmp(*this);
     --(*this);
     return tmp;
+}
+
+bool technikum::string::iterator::operator!=(iterator const& other) const {
+    return ptr != other.ptr;
+}
+
+bool technikum::string::iterator::operator==(iterator const& other) const {
+    return ptr == other.ptr;
 }
 
 technikum::string::iterator::reference technikum::string::iterator::operator*() const {

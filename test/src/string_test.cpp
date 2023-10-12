@@ -223,6 +223,41 @@ TEST(SUITE, end) {
     ASSERT_EQ(*(--it), '!');
 }
 
+TEST(SUITE, iterator_prefix_increment) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = string.begin();
+    ASSERT_EQ(*it, 'H');
+    ASSERT_EQ(*(++it), 'e');
+}
+
+TEST(SUITE, iterator_postfix_increment) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = string.begin();
+    ASSERT_EQ(*it, 'H');
+    ASSERT_EQ(*(it++), 'H');
+    ASSERT_EQ(*it, 'e');
+}
+
+TEST(SUITE, not_equal) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it1(string.begin());
+    technikum::string::iterator it2(string.begin());
+
+    EXPECT_FALSE(it1 != it2);
+    it2++;
+    EXPECT_TRUE(it1 != it2);
+}
+
+TEST(SUITE, equal) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it1(string.begin());
+    technikum::string::iterator it2(string.begin());
+
+    EXPECT_TRUE(it1 == it2);
+    it2++;
+    EXPECT_FALSE(it1 == it2);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
