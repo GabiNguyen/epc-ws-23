@@ -41,8 +41,20 @@ bool technikum::string::iterator::operator==(iterator const& other) const {
     return ptr == other.ptr;
 }
 
+technikum::string::iterator::reference technikum::string::iterator::operator*() {
+    return *ptr;
+}
+
 technikum::string::iterator::reference technikum::string::iterator::operator*() const {
     return *ptr;
+}
+
+technikum::string::iterator::pointer technikum::string::iterator::operator->() {
+    return ptr;
+}
+
+technikum::string::iterator::pointer technikum::string::iterator::operator->() const {
+    return ptr;
 }
 
 // /////////////////////////////////////////////////////////////////////////
