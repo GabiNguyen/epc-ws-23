@@ -23,6 +23,47 @@ TEST(SUITE, iterator_postfix_decrement) {
     ASSERT_EQ(*it, '!');
 }
 
+TEST(SUITE, iterator_prefix_increment) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = string.begin();
+    ASSERT_EQ(*it, 'H');
+    ASSERT_EQ(*(++it), 'e');
+}
+
+TEST(SUITE, iterator_postfix_increment) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = string.begin();
+    ASSERT_EQ(*it, 'H');
+    ASSERT_EQ(*(it++), 'H');
+    ASSERT_EQ(*it, 'e');
+}
+
+TEST(SUITE, iterator_not_equal) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it1(string.begin());
+    technikum::string::iterator it2(string.begin());
+
+    EXPECT_FALSE(it1 != it2);
+    it2++;
+    EXPECT_TRUE(it1 != it2);
+}
+
+TEST(SUITE, iterator_equal) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it1(string.begin());
+    technikum::string::iterator it2(string.begin());
+
+    EXPECT_TRUE(it1 == it2);
+    it2++;
+    EXPECT_FALSE(it1 == it2);
+}
+
+TEST(SUITE, std_find) {
+    technikum::string string("Hello World!");
+    technikum::string::iterator it = std::find(string.begin(), string.end(), 'W');
+    ASSERT_EQ(*it, 'W');
+}
+
 // /////////////////////////////////////////////////////////////////////////
 // rule of five
 // /////////////////////////////////////////////////////////////////////////
@@ -222,50 +263,6 @@ TEST(SUITE, end) {
     ASSERT_EQ(*it, '\0');
     ASSERT_EQ(*(--it), '!');
 }
-
-TEST(SUITE, iterator_prefix_increment) {
-    technikum::string string("Hello World!");
-    technikum::string::iterator it = string.begin();
-    ASSERT_EQ(*it, 'H');
-    ASSERT_EQ(*(++it), 'e');
-}
-
-TEST(SUITE, iterator_postfix_increment) {
-    technikum::string string("Hello World!");
-    technikum::string::iterator it = string.begin();
-    ASSERT_EQ(*it, 'H');
-    ASSERT_EQ(*(it++), 'H');
-    ASSERT_EQ(*it, 'e');
-}
-
-TEST(SUITE, not_equal) {
-    technikum::string string("Hello World!");
-    technikum::string::iterator it1(string.begin());
-    technikum::string::iterator it2(string.begin());
-
-    EXPECT_FALSE(it1 != it2);
-    it2++;
-    EXPECT_TRUE(it1 != it2);
-}
-
-TEST(SUITE, equal) {
-    technikum::string string("Hello World!");
-    technikum::string::iterator it1(string.begin());
-    technikum::string::iterator it2(string.begin());
-
-    EXPECT_TRUE(it1 == it2);
-    it2++;
-    EXPECT_FALSE(it1 == it2);
-}
-
-// TEST(SUITE, arrow_operator) {
-//     technikum::string string("Hello, World!");
-//     technikum::string::iterator it = string.begin();
-//     auto ptr = it.operator->();
-    
-//     ASSERT_EQ(ptr, &(*it)); 
-// }
-
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
