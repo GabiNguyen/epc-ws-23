@@ -31,7 +31,7 @@
         {
             "label": "valgrind",
             "type": "shell",
-            "command": "valgrind --tool=memcheck --leak-check=yes ./build/test/string_test_Tests",
+            "command": "valgrind --tool=memcheck --leak-check=yes ./build/test/unique_ptr_test_Tests",
             "dependsOrder": "sequence",
             "dependsOn": [
                 "build"
