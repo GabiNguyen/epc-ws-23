@@ -263,8 +263,3 @@ TEST(SUITE, end) {
     ASSERT_EQ(*it, '\0');
     ASSERT_EQ(*(--it), '!');
 }
-
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
