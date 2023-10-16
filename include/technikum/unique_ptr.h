@@ -90,7 +90,7 @@ T* technikum::unique_ptr<T>::release() {
 }
 
 template<typename T>
-void technikum::unique_ptr<T>::reset(){
+void technikum::unique_ptr<T>::reset() {
     delete owned_ptr;
     owned_ptr = nullptr;
 }
