@@ -21,6 +21,10 @@ namespace technikum {
             T& operator*() const;
             operator bool() const;
 
+            T* release();
+            void reset();
+            void swap(unique_ptr<T>& other);
+
         private:
             T* owned_ptr;
     };
@@ -72,6 +76,30 @@ T& technikum::unique_ptr<T>::operator*() const {
 template<typename T>
 technikum::unique_ptr<T>::operator bool() const {
     return owned_ptr != nullptr;
+}
+
+// /////////////////////////////////////////////////////////////////////////
+// functions
+// /////////////////////////////////////////////////////////////////////////
+
+template<typename T>
+T* technikum::unique_ptr<T>::release() {
+    T* released_ptr = owned_ptr;
+    owned_ptr = nullptr;
+    return released_ptr;
+}
+
+template<typename T>
+void technikum::unique_ptr<T>::reset(){
+    delete owned_ptr;
+    owned_ptr = nullptr;
+}
+
+template<typename T>
+void technikum::unique_ptr<T>::swap(unique_ptr<T>& other) {
+    T* temp = owned_ptr;
+    owned_ptr = other.owned_ptr;
+    other.owned_ptr = temp;
 }
 
 #endif // UNIQUE_PTR_H
