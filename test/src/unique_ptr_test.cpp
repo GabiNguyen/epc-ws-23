@@ -18,7 +18,15 @@ TEST(SUITE, constructor) {
     ASSERT_EQ(*unique_ptr, 42);
 }
 
-// TEST(SUITE, destructor) { ??? }
+TEST(SUITE, destructor) {
+    int* ptr = new int(42);
+
+    auto d = [](int* p) {
+        delete p;
+    };
+
+    technikum::unique_ptr<int> unique_ptr(ptr, d);
+}
 
 TEST(SUITE, move_constructor) {
     int* ptr = new int(42);
