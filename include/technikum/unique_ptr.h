@@ -1,12 +1,15 @@
 #ifndef UNIQUE_PTR_H
 #define UNIQUE_PTR_H
 
+#include <functional>
+
 namespace technikum {
 
     template<typename T>
     class unique_ptr {
         public:
             unique_ptr(T* ptr);
+            unique_ptr(T* ptr, std::function<void(T*)> deleter);
             ~unique_ptr();
 
             // Copying is not allowed
@@ -27,6 +30,7 @@ namespace technikum {
 
         private:
             T* owned_ptr;
+            std::function<void(T*)> custom_deleter;
     };
 }
 
@@ -35,13 +39,20 @@ namespace technikum {
 // /////////////////////////////////////////////////////////////////////////
 
 template<typename T>
-technikum::unique_ptr<T>::unique_ptr(T* ptr) : owned_ptr(ptr) {
+technikum::unique_ptr<T>::unique_ptr(T* ptr) : owned_ptr(ptr),
+        custom_deleter([](T* ptr_to_delete) { delete ptr_to_delete; }) {
+    // noop
+}
+
+template<typename T>
+technikum::unique_ptr<T>::unique_ptr(T* ptr, std::function<void(T*)> deleter) :
+        owned_ptr(ptr), custom_deleter(deleter) {
     // noop
 }
 
 template<typename T>
 technikum::unique_ptr<T>::~unique_ptr() {
-    delete owned_ptr;
+    custom_deleter(owned_ptr);
 }
 
 template<typename T>

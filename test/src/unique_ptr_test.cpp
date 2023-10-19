@@ -1,4 +1,5 @@
 #include "technikum/unique_ptr.h"
+#include <iostream>
 
 #include <gtest/gtest.h>
 
@@ -18,7 +19,15 @@ TEST(SUITE, constructor) {
     ASSERT_EQ(*unique_ptr, 42);
 }
 
-// TEST(SUITE, destructor) { ??? }
+auto d = [](int* ptr) {
+    delete ptr;
+    std::cout << "deleter called" << std::endl;
+};
+
+TEST(SUITE, destructor) {
+    int* ptr = new int(42);
+    technikum::unique_ptr<int> unique_ptr(ptr, d);
+}
 
 TEST(SUITE, move_constructor) {
     int* ptr = new int(42);
